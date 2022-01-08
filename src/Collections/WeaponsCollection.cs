@@ -6,7 +6,7 @@ namespace Game.Collections
 {
     public class WeaponsCollection : IWeaponsCollection
     {
-        private List<Weapon> Weapons { get; init; }
+        public List<Weapon> Weapons { get; init; }
 
         public WeaponsCollection()
         {
@@ -60,7 +60,7 @@ namespace Game.Collections
         {
             if (name.Length >= 1)
                 name = char.ToUpper(name[0]) + name[1..];
-            for (int i = 0; i < Weapons.Count; i++)
+            for (int i = Weapons.Count - 1; i >= 0; i--)
             {
                 if (Weapons[i].Name.Equals(name))
                 {

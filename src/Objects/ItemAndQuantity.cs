@@ -4,6 +4,7 @@ namespace Game.Objects
 {
     public class ItemAndQuantity
     {
+        internal ItemAndQuantity() { }
         public ItemAndQuantity(Item item, int quantity)
         {
             Item = item;

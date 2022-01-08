@@ -2,9 +2,9 @@
 {
     public sealed class Equipment
     {
-        internal IArmorsCollection Armors { get; set; }
-        internal IWeaponsCollection Weapons { get; set; }
-        internal IItemsCollection Items { get; set; }
+        public ArmorsCollection Armors { get; set; }
+        public WeaponsCollection Weapons { get; set; }
+        public ItemsCollection Items { get; set; }
         public int Gold { get; set; }
         public int EquippedArmorIndex { get; set; }
         public int EquippedWeaponIndex { get; set; }

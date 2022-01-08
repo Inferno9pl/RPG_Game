@@ -5,6 +5,7 @@ namespace Game.Objects
 {
     public sealed class Weapon : Collectable
     {
+        internal Weapon() { }
         public Weapon(string name, char type, int damage, int requirement, char stat, int value)
         {
             Name = name;

@@ -11,8 +11,10 @@ namespace Game.Characters
         public int MaxLife { get; set; }
         public int Level { get; set; }
 
-        public int Strenght { get; set; }
-        public int Agility { get; set; }
+        private int strenght;
+        private int agility;
+        public int Strenght { get => strenght; set => strenght = SetValue(value, 200); }
+        public int Agility { get => agility; set => agility = SetValue(value, 200); }
         public Equipment Eq { get; init; }
 
         public void Equip(string element)
@@ -83,6 +85,8 @@ namespace Game.Characters
 
         public int GetProtection(string type)
         {
+            if (Eq.EquippedArmorIndex == -1) return 0;
+
             int armor;
             armor = type switch
             {
@@ -116,6 +120,12 @@ namespace Game.Characters
                 Console.WriteLine(" >  " + item);
                 enemy.Eq.Items.Add(item.Item, item.Quantity);
             }
+        }
+
+        private static int SetValue(int value, int maxValue)
+        {
+            if (value < 0) return 0;
+            return value > maxValue ? maxValue : value;
         }
 
         override public string ToString()

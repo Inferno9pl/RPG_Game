@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace Game.Places
 {
-    public class Market : IShop
+    public class Merchant : Creature, IMerchant
     {
         private const int SellPriceMultipierPercentage = 15;
         private const int AbilityOffset = 20;
@@ -16,17 +16,18 @@ namespace Game.Places
         private Dictionary<int, string> ShopProductList { set; get; }
         private Dictionary<int, string> ClientProductList { set; get; }
 
-        public Equipment Eq { get; set; }
         public double PriceMultiplier { get; set; }
+        public ShopType Type { get; init; }
 
-        public Market(ShopType type, Creature client, IGetSpecificListFromDatabase database, double priceMult = 1.0f)
+        public Merchant(ShopType type, Creature client, IGetSpecificListFromDatabase database, double priceMult = 1.0f)
         {
+            Type = type;
             Eq = type switch
             {
                 ShopType.armory => GenerateAssortment(5, 0, 0, client, database),
                 ShopType.weaponry => GenerateAssortment(0, 5, 0, client, database),
                 ShopType.trader => GenerateAssortment(0, 0, 10, client, database),
-                ShopType.all => GenerateAssortment(2, 3, 10, client, database),
+                ShopType.all => GenerateAssortment(2, 3, 5, client, database),
                 _ => throw new ArgumentException("Niepoprawny typ sklepu"),
             };
             PriceMultiplier = priceMult;
@@ -142,7 +143,7 @@ namespace Game.Places
                 {
                     var armor = Eq.Armors.Get(i);
                     Console.WriteLine("    " + index.ToString().PadLeft(2) + "." + BuyValue(armor.Value).ToString().PadLeft(6) + " gold | "
-                        + armor.Name.PadRight(24) + " | "
+                        + armor.Name.PadRight(31) + " | "
                         + armor.MeleeProtection.ToString().PadLeft(3) + " | "
                         + armor.ArrowProtection.ToString().PadLeft(3) + " | ");
 
@@ -156,7 +157,7 @@ namespace Game.Places
                 {
                     var weapon = Eq.Weapons.Get(i);
                     Console.WriteLine("    " + index.ToString().PadLeft(2) + "." + BuyValue(weapon.Value).ToString().PadLeft(6) + " gold | "
-                        + weapon.Name.PadRight(24) + " | "
+                        + weapon.Name.PadRight(31) + " | "
                         + weapon.Type + " | "
                         + weapon.Damage.ToString().PadLeft(3) + " dmg | "
                         + weapon.Requirement.ToString().PadLeft(3) + " "
@@ -173,10 +174,19 @@ namespace Game.Places
                 {
                     var quantity = Eq.Items.Get(i).Quantity;
                     var item = Eq.Items.Get(i).Item;
-                    Console.WriteLine("    " + index.ToString().PadLeft(2) + "." + BuyValue(item.Value).ToString().PadLeft(6) + " gold | "
-                        + item.Name.PadRight(24) + " | "
-                        + "x".PadLeft(3 - quantity.ToString().Length) + quantity + " | ");
 
+                    if(item.Number != -1)
+                    {
+                        Console.WriteLine("    " + index.ToString().PadLeft(2) + "." + BuyValue(item.Value).ToString().PadLeft(6) + " gold | "
+                        + item.Name.PadRight(23) + " (" + item.Number + "hp)".PadRight(6 - item.Number.ToString().Length) + " | "
+                        + "x".PadLeft(4 - quantity.ToString().Length) + quantity + " | ");
+                    } else
+                    {
+                        Console.WriteLine("    " + index.ToString().PadLeft(2) + "." + BuyValue(item.Value).ToString().PadLeft(6) + " gold | "
+                        + item.Name.PadRight(31) + " | "
+                        + "x".PadLeft(4 - quantity.ToString().Length) + quantity + " | ");
+                    }
+                    
                     ShopProductList.Add(index++, item.Name);
                 }
             }
@@ -194,7 +204,7 @@ namespace Game.Places
                 {
                     var armor = client.Eq.Armors.Get(i);
                     Console.WriteLine("    " + index.ToString().PadLeft(2) + "." + SellValue(armor.Value).ToString().PadLeft(6) + " gold | "
-                        + armor.Name.PadRight(20) + " | "
+                        + armor.Name.PadRight(31) + " | "
                         + armor.MeleeProtection.ToString().PadLeft(3) + " | "
                         + armor.ArrowProtection.ToString().PadLeft(3) + " | ");
 
@@ -208,7 +218,7 @@ namespace Game.Places
                 {
                     var weapon = client.Eq.Weapons.Get(i);
                     Console.WriteLine("    " + index.ToString().PadLeft(2) + "." + SellValue(weapon.Value).ToString().PadLeft(6) + " gold | "
-                        + weapon.Name.PadRight(20) + " | "
+                        + weapon.Name.PadRight(31) + " | "
                         + weapon.Type + " | "
                         + weapon.Damage.ToString().PadLeft(3) + " dmg | "
                         + weapon.Requirement.ToString().PadLeft(3) + " "
@@ -226,7 +236,7 @@ namespace Game.Places
                     var quantity = client.Eq.Items.Get(i).Quantity;
                     var item = client.Eq.Items.Get(i).Item;
                     Console.WriteLine("    " + index.ToString().PadLeft(2) + "." + SellValue(item.Value).ToString().PadLeft(6) + " gold | "
-                        + item.Name.PadRight(24) + " | "
+                        + item.Name.PadRight(31) + " | "
                         + "x".PadLeft(3 - quantity.ToString().Length) + quantity + " | ");
 
                     ClientProductList.Add(index++, item.Name);

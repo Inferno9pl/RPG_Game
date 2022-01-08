@@ -1,7 +1,10 @@
-﻿namespace Game.Objects
+﻿using System;
+
+namespace Game.Objects
 {
     public class Skills
     {
+        internal Skills() { }
         public Skills(int oneHanded, int twoHanded, int bow, int crossbow)
         {
             OneHanded = oneHanded;

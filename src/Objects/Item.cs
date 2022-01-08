@@ -5,6 +5,7 @@ namespace Game.Objects
 {
     public sealed class Item : Collectable
     {
+        internal Item() { }
         public Item(string name, IGetObjectDataFromDatabase database)
         {
             if (database.GetItemData(name, out string[] result))

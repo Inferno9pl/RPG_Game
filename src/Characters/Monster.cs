@@ -117,7 +117,8 @@ namespace Game.Characters
                 else
                     damage = (Strenght + Eq.Weapons.Get(Eq.EquippedWeaponIndex).Damage - enemyArmor - 10) / DamageSplitter;
 
-                damage = damage > 5 ? damage : 5;
+                //            damage = damage > 5 ? damage : 5;
+                damage = damage > 1 ? damage : 1;
                 enemy.Life -= damage;
 
                 Console.WriteLine("{0} oberwał za {1} (armor {2})", enemy.Name, damage, enemyArmor);

@@ -1,11 +1,12 @@
-﻿using Game.Objects;
+﻿using Game.Characters;
+using Game.Objects;
 using System;
 using System.Collections.Generic;
 using System.IO;
 
 namespace Game.Databases
 {
-    public class DatabaseTxtFile : IGetObjectDataFromDatabase, IGetSpecificListFromDatabase
+    public class DatabaseTxtFile : IGetObjectDataFromDatabase, IGetSpecificListFromDatabase, ILoadAndSaveToDatabase
     {
         private const string Path = @"C:\Users\Infer\OneDrive\Pulpit\Projekt";
         private const int FilenameEndingLength = 6;
@@ -188,5 +189,32 @@ namespace Game.Databases
             }
             return weapons;
         }
+
+        public void SavePlayer(Knight player)
+        {
+            string fileLocation = Path + @"\" + player.Name + @".xml";
+            FileStream file = File.Create(fileLocation);
+
+            System.Xml.Serialization.XmlSerializer writer = new(typeof(Knight));
+            writer.Serialize(file, player);
+
+            Console.WriteLine("Zapisano " + player.Name);
+            file.Close();
+        }
+
+        public Knight LoadPlayer(string playerName)
+        {
+            string fileLocation = Path + @"\" + playerName + @".xml";
+            StreamReader file = new(fileLocation);
+
+            System.Xml.Serialization.XmlSerializer reader = new(typeof(Knight));
+            Knight player = (Knight)reader.Deserialize(file);
+            
+            Console.WriteLine("Wczytano " + player.Name);
+            file.Close();
+            return player;
+        }
+
+
     }
 }

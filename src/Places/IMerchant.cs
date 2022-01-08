@@ -2,7 +2,7 @@
 
 namespace Game.Places
 {
-    public interface IShop
+    public interface IMerchant
     {
         void BuyFromShop(Creature client, string name, int count = -1);
         void SellToShop(Creature client, string name, int count = -1);
