@@ -6,7 +6,7 @@ namespace Game.Characters
     public interface IGameMechanics
     {
         void ShowEq();
-        void SellAllTrash(IMerchant shop);
-        void Heal(Item item);
+        void ShowSkills();
+        void Heal(ItemAndQuantity itemAndQuantity);
     }
 }

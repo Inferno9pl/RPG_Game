@@ -6,6 +6,7 @@ namespace Game.Databases
     public interface ILoadAndSaveToDatabase
     {
         void SavePlayer(Knight player);
-        Knight LoadPlayer(string playerName);
+        public bool LoadPlayer(string playerName, out Knight player);
+        List<string> GetSaveFiles();
     }
 }

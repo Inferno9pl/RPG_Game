@@ -13,24 +13,29 @@ namespace Game.Characters
 
         private int strenght;
         private int agility;
-        public int Strenght { get => strenght; set => strenght = SetValue(value, 200); }
-        public int Agility { get => agility; set => agility = SetValue(value, 200); }
+        public int Strenght { get => strenght; set => strenght = SetAtributeValue(value, 200); }
+        public int Agility { get => agility; set => agility = SetAtributeValue(value, 200); }
         public Equipment Eq { get; init; }
 
-        public void Equip(string element)
+        public void Equip(string element, out string message)
         {
             Eq.Armors.Find(element, out Armor armor);
             if (armor != null)
             {
                 Equip(armor);
+                message = "Wyposażono " + armor.Name;
             }
             else
             {
                 Eq.Weapons.Find(element, out Weapon weapon);
                 if (weapon != null)
+                {
                     Equip(weapon);
+                    message = "Wyposażono " + weapon.Name;
+                }
+
                 else
-                    Console.WriteLine($"Nie znaleziono {element}");
+                    message = "Nie znaleziono " + element;
             }
         }
         public void Equip(Armor armor)
@@ -122,7 +127,7 @@ namespace Game.Characters
             }
         }
 
-        private static int SetValue(int value, int maxValue)
+        private static int SetAtributeValue(int value, int maxValue)
         {
             if (value < 0) return 0;
             return value > maxValue ? maxValue : value;

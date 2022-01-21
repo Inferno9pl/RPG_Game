@@ -1,12 +1,16 @@
 ﻿using Game.Characters;
+using Game.Objects;
 using Game.Utils;
 using System;
+using System.Collections.Generic;
 
 namespace Game.Places
 {
     public class Teacher : Creature, ITeacher
     {
-        private Game.Objects.Skills MaxSkillLevels { get; set; }
+        private Skills MaxSkillLevels { get; set; }
+
+        private Dictionary<int, string> TeacherSkills { set; get; }
 
         public Teacher(bool teachStrenght, bool teachAgility, bool teachOneHanded, bool teachTwoHanded, bool teachBow, bool teachCrossBow)
         {
@@ -22,26 +26,80 @@ namespace Game.Places
                 teachTwoHanded ? Utilities.Rand(1, 10) * 10 : 0,
                 teachBow ? Utilities.Rand(1, 10) * 10 : 0,
                 teachCrossBow ? Utilities.Rand(1, 10) * 10 : 0);
+
+            TeacherSkills = new();
         }
 
         public void ShowWhatITeach()
         {
-            Console.WriteLine("\nUczę:");
-            if (Strenght > 0) Console.WriteLine($" >> Siły (max {this.Strenght} pkt)");
-            if (Agility > 0) Console.WriteLine($" >> Zręczności (max {this.Agility} pkt)");
-            if (MaxSkillLevels.OneHanded > 0) Console.WriteLine($" >> Walki bronią jednoręczną (max {this.MaxSkillLevels.OneHanded} pkt)");
-            if (MaxSkillLevels.TwoHanded > 0) Console.WriteLine($" >> Walki bronią dwuręczną (max {this.MaxSkillLevels.TwoHanded} pkt)");
-            if (MaxSkillLevels.Bow > 0) Console.WriteLine($" >> Łucznictwa (max {this.MaxSkillLevels.Bow} pkt)");
-            if (MaxSkillLevels.Crossbow > 0) Console.WriteLine($" >> Kusznictwa (max {this.MaxSkillLevels.Crossbow} pkt)");
+            TeacherSkills.Clear();
+            var index = 1;
+
+            if (Strenght > 0)
+            {
+                Console.WriteLine($"   {index}. Siła (max {this.Strenght} pkt)");
+                TeacherSkills.Add(index++, "strenght");
+            }
+            if (Agility > 0)
+            {
+                Console.WriteLine($"   {index}. Zręczność (max {this.Agility} pkt)");
+                TeacherSkills.Add(index++, "agility");
+            }
+            if (MaxSkillLevels.OneHanded > 0)
+            {
+                Console.WriteLine($"   {index}. Walka bronią jednoręczną (max {this.MaxSkillLevels.OneHanded} pkt)");
+                TeacherSkills.Add(index++, "onehanded");
+            }
+            if (MaxSkillLevels.TwoHanded > 0)
+            {
+                Console.WriteLine($"   {index}. Walka bronią dwuręczną (max {this.MaxSkillLevels.TwoHanded} pkt)");
+                TeacherSkills.Add(index++, "twohanded");
+            }
+            if (MaxSkillLevels.Bow > 0)
+            {
+                Console.WriteLine($"   {index}. Łucznictwo (max {this.MaxSkillLevels.Bow} pkt)");
+                TeacherSkills.Add(index++, "bow");
+            }
+            if (MaxSkillLevels.Crossbow > 0)
+            {
+                Console.WriteLine($"   {index}. Kusznictwo (max {this.MaxSkillLevels.Crossbow} pkt)");
+                TeacherSkills.Add(index++, "crossbow");
+            }
         }
         public int GetCostOfSkillImprovement(int skillLevel)
         {
             if (skillLevel > 149) skillLevel = 149;
             return (skillLevel / 30) + 1;
         }
-
-        public void Teach(Knight student, string skill, int skillImprovementPoints)
+        public int GetStudentAbilityPoints(Knight student, string ability)
         {
+            if (Int32.TryParse(ability, out int index))
+            {
+                var temp = TeacherSkills.GetValueOrDefault(index);
+                if (temp != null)
+                    ability = temp;
+            }
+
+            return ability switch
+            {
+                "strenght" => student.Strenght,
+                "agility" => student.Agility,
+                "onehanded" => student.Skill.OneHanded,
+                "twohanded" => student.Skill.TwoHanded,
+                "bow" => student.Skill.Bow,
+                "crossbow" => student.Skill.Crossbow,
+                _ => -1,//Console.WriteLine($" Nie ma takiej umiejętności - {ability}");
+            };
+        }
+        public bool Teach(Knight student, string skill, int skillImprovementPoints, out string message)
+        {
+            if (Int32.TryParse(skill, out int index))
+            {
+                var temp = TeacherSkills.GetValueOrDefault(index);
+                if (temp != null)
+                    skill = temp;
+            }
+
             switch (skill)
             {
                 case "strenght":
@@ -49,13 +107,19 @@ namespace Game.Places
                     {
                         if (this.Strenght >= student.Strenght + skillImprovementPoints)
                         {
-                            student.Strenght = TncreaseSkillLevel(student, student.Strenght, skillImprovementPoints);
+                            int strenghtSkill = student.Strenght;
+                            if (TncreaseSkillLevel(student, ref strenghtSkill, skillImprovementPoints, out message))
+                            {
+                                message += " Siły";
+                                student.Strenght = strenghtSkill;
+                                return true;
+                            }
                         }
                         else
-                            Console.WriteLine($"Ten nauczyciel nauczy Cię maksymalnie {this.Strenght} Siły!");
+                            message = "Ten nauczyciel nauczy Cię maksymalnie " + this.Strenght + " Siły!";
                     }
                     else
-                        Console.WriteLine("Ten nauczyciel nie uczy Siły!");
+                        message = "Ten nauczyciel nie uczy Siły!";
                     break;
 
                 case "agility":
@@ -63,13 +127,19 @@ namespace Game.Places
                     {
                         if (this.Agility >= student.Agility + skillImprovementPoints)
                         {
-                            student.Agility = TncreaseSkillLevel(student, student.Agility, skillImprovementPoints);
+                            var agilitySkill = student.Agility;
+                            if (TncreaseSkillLevel(student, ref agilitySkill, skillImprovementPoints, out message))
+                            {
+                                message += " Zręczności";
+                                student.Agility = agilitySkill;
+                                return true;
+                            }
                         }
                         else
-                            Console.WriteLine($"Ten nauczyciel nauczy Cię maksymalnie {this.Agility} Zręczności!");
+                            message = "Ten nauczyciel nauczy Cię maksymalnie " + this.Agility + " Zręczności!";
                     }
                     else
-                        Console.WriteLine("Ten nauczyciel nie uczy Zręczności!");
+                        message = "Ten nauczyciel nie uczy Zręczności!";
                     break;
 
                 case "onehanded":
@@ -77,13 +147,19 @@ namespace Game.Places
                     {
                         if (this.MaxSkillLevels.OneHanded >= student.Skill.OneHanded + skillImprovementPoints)
                         {
-                            student.Skill.OneHanded = TncreaseSkillLevel(student, student.Skill.OneHanded, skillImprovementPoints);
+                            var oneHandedSkill = student.Skill.OneHanded;
+                            if (TncreaseSkillLevel(student, ref oneHandedSkill, skillImprovementPoints, out message))
+                            {
+                                message += " Walki bronią jednoręczną";
+                                student.Skill.OneHanded = oneHandedSkill;
+                                return true;
+                            }
                         }
                         else
-                            Console.WriteLine($"Ten nauczyciel nauczy Cię maksymalnie {this.MaxSkillLevels.OneHanded} Walki bronią jednoręczną!");
+                            message = "Ten nauczyciel nauczy Cię maksymalnie " + this.MaxSkillLevels.OneHanded + " Walki bronią jednoręczną!";
                     }
                     else
-                        Console.WriteLine("Ten nauczyciel nie uczy Walki bronią jednoręczną!");
+                        message = "Ten nauczyciel nie uczy Walki bronią jednoręczną!";
                     break;
 
                 case "twohanded":
@@ -91,13 +167,19 @@ namespace Game.Places
                     {
                         if (this.MaxSkillLevels.TwoHanded >= student.Skill.TwoHanded + skillImprovementPoints)
                         {
-                            student.Skill.TwoHanded = TncreaseSkillLevel(student, student.Skill.TwoHanded, skillImprovementPoints);
+                            var twoHandedSkill = student.Skill.TwoHanded;
+                            if (TncreaseSkillLevel(student, ref twoHandedSkill, skillImprovementPoints, out message))
+                            {
+                                message += " Walki bronią dwuręczną";
+                                student.Skill.TwoHanded = twoHandedSkill;
+                                return true;
+                            }
                         }
                         else
-                            Console.WriteLine($"Ten nauczyciel nauczy Cię maksymalnie {this.MaxSkillLevels.TwoHanded} Walki bronią dwuręczną!");
+                            message = "Ten nauczyciel nauczy Cię maksymalnie " + this.MaxSkillLevels.TwoHanded + " Walki bronią dwuręczną!";
                     }
                     else
-                        Console.WriteLine("Ten nauczyciel nie uczy Walki bronią dwuręczną!");
+                        message = "Ten nauczyciel nie uczy Walki bronią dwuręczną!";
                     break;
 
                 case "bow":
@@ -105,13 +187,19 @@ namespace Game.Places
                     {
                         if (this.MaxSkillLevels.Bow >= student.Skill.Bow + skillImprovementPoints)
                         {
-                            student.Skill.Bow = TncreaseSkillLevel(student, student.Skill.Bow, skillImprovementPoints);
+                            var bowSkill = student.Skill.Bow;
+                            if (TncreaseSkillLevel(student, ref bowSkill, skillImprovementPoints, out message))
+                            {
+                                message += " Łucznictwa";
+                                student.Skill.Bow = bowSkill;
+                                return true;
+                            }
                         }
                         else
-                            Console.WriteLine($"Ten nauczyciel nauczy Cię maksymalnie {this.MaxSkillLevels.Bow} Łucznictwa!");
+                            message = "Ten nauczyciel nauczy Cię maksymalnie " + this.MaxSkillLevels.Bow + " Łucznictwa!";
                     }
                     else
-                        Console.WriteLine("Ten nauczyciel nie uczy Łucznictwa!");
+                        message = "Ten nauczyciel nie uczy Łucznictwa!";
                     break;
 
                 case "crossbow":
@@ -119,21 +207,29 @@ namespace Game.Places
                     {
                         if (this.MaxSkillLevels.Crossbow >= student.Skill.Crossbow + skillImprovementPoints)
                         {
-                            student.Skill.Crossbow = TncreaseSkillLevel(student, student.Skill.Crossbow, skillImprovementPoints);
+                            var crossbowSkill = student.Skill.Crossbow;
+                            if (TncreaseSkillLevel(student, ref crossbowSkill, skillImprovementPoints, out message))
+                            {
+                                message += " Kusznictwo";
+                                student.Skill.Crossbow = crossbowSkill;
+                                return true;
+                            }
                         }
                         else
-                            Console.WriteLine($"Ten nauczyciel nauczy Cię maksymalnie {this.MaxSkillLevels.Crossbow} Kusznictwa!");
+                            message = "Ten nauczyciel nauczy Cię maksymalnie " + this.MaxSkillLevels.Crossbow + " Kusznictwa!";
                     }
                     else
-                        Console.WriteLine("Ten nauczyciel nie uczy Kusznictwa!");
+                        message = "Ten nauczyciel nie uczy Kusznictwa!";
                     break;
 
                 default:
-                    Console.WriteLine("Nie znaleziono podanej umiejętności");
-                    return;
+                    message = "Nie znaleziono podanej umiejętności";
+                    break;
             }
+            return false;
         }
-        private int TncreaseSkillLevel(Knight student, int actualSkillLevel, int skillImprovementPoints)
+
+        private bool TncreaseSkillLevel(Knight student, ref int actualSkillLevel, int skillImprovementPoints, out string message)
         {
             var necessarySkillPoints = GetCostOfSkillImprovement(actualSkillLevel) * skillImprovementPoints;
 
@@ -141,13 +237,15 @@ namespace Game.Places
             {
                 student.SkillPoints -= necessarySkillPoints;
                 actualSkillLevel += skillImprovementPoints;
+                message = "Nauczono +" + skillImprovementPoints;
+                return true;
             }
             else
             {
                 var missedPoints = necessarySkillPoints - student.SkillPoints;
-                Console.WriteLine($"Nie masz wystarczającej ilości punktów nauki. Brakuje {missedPoints} punktów");
+                message = "Nie masz wystarczającej ilości punktów nauki. Brakuje " + missedPoints + " punktów";
+                return false;
             }
-            return actualSkillLevel;
         }
     }
 }

@@ -1,11 +1,10 @@
 ﻿using Game.Collections;
 using Game.Objects;
-using Game.Places;
 using System;
 
 namespace Game.Characters
 {
-    public sealed class Knight : Creature, IAttacker, IExperiencer
+    public sealed class Knight : Creature, IAttacker, IExperiencer, IGameMechanics
     {
         public int Exp { get; set; }
         public int SkillPoints { get; set; }
@@ -44,7 +43,7 @@ namespace Game.Characters
                 statistics[6]);
         }
 
-        public void Attack(Creature enemy, string type = "malee")
+        public void Attack(Creature enemy, out string message, string type = "malee")
         {
             if (enemy.Life > 0)
             {
@@ -58,8 +57,7 @@ namespace Game.Characters
                 else
                 {
                     //checking did it is a critical hit
-                    Random rand = new();
-                    var chance = (rand.Next() % 100) + 1;
+                    var chance = Utils.Utilities.Rand(1, 100);
 
                     bool critical = Eq.Weapons.Get(Eq.EquippedWeaponIndex).Type switch
                     {
@@ -75,17 +73,14 @@ namespace Game.Characters
                     else
                         damage = (this.Strenght + Eq.Weapons.Get(Eq.EquippedWeaponIndex).Damage - enemyArmor - 10) / 10;
                 }
-                //           damage = damage > 5 ? damage : 5;
-                damage = damage > 1 ? damage : 1;
+                damage = damage > 5 ? damage : 5;
                 enemy.Life -= damage;
-                Console.WriteLine("{0} oberwał za {1} (armor {2})", enemy.Name, damage, enemyArmor);
 
-                //WinBattle(enemy);
-
+                message = "  " + enemy.Name + " oberwał za " + damage + " (armor " + enemyArmor + ")"; 
             }
             else
             {
-                Console.WriteLine("{0} jest już martwy!", enemy.Name);
+                message = "  " + enemy.Name + " jest już martwy!";
             }
         }
         public bool WinBattle(Creature enemy)
@@ -94,8 +89,6 @@ namespace Game.Characters
             {
                 enemy.Life = 0;
                 this.TakeExp(enemy.Level * 10);
-                Console.WriteLine($"   {enemy.Name} pokonany!");
-                Console.WriteLine($"   Doświadczenie: {this.Exp} / {GetNextLvlExp()}");
                 enemy.TransferEq(this);
                 return true;
             }
@@ -129,38 +122,14 @@ namespace Game.Characters
             Eq.Weapons.Show();
             Eq.Items.Show();
         }
-        public void SellAllTrash(IMerchant shop)
+        public void ShowSkills()
         {
-            for (int i = Eq.Items.Count() - 1; i >= 0; i--)
-            {
-                var item = Eq.Items.Get(i).Item;
-                if (!item.Type.Equals("pożywienie") && !item.Type.Equals("mikstura"))
-                {
-                    shop.SellToShop(this, item.Name);
-                }
-            }
-
-            Weapon equippedWeapon = this.Eq.Weapons.Get(this.Eq.EquippedWeaponIndex);
-            for (int j = Eq.Weapons.Count() - 1; j >= 0; j--)
-            {
-                var weapon = Eq.Weapons.Get(j);
-                if (weapon.Name.Equals("Laga") ||
-                    weapon.Name.Equals("Zardzewiały krótki miecz") ||
-                    weapon.Name.Equals("Zardzewiały miecz dwuręczny") ||
-                    weapon.Name.Equals("Lekki orkowy topór") ||
-                    weapon.Name.Equals("Jaszczurzy miecz") ||
-                    weapon.Name.Equals("Średni orkowy topór") ||
-                    weapon.Name.Equals("Miecz dwuręczny") ||
-                    weapon.Name.Equals("Orkowy miecz wojenny"))
-                {
-                    //if weapon is equiped then didnt sell
-                    if (j != Eq.EquippedWeaponIndex)
-                    {
-                        shop.SellToShop(this, weapon.Name);
-                    }
-                }
-            }
-            Equip(equippedWeapon.Name);
+            Console.WriteLine($"   {this.Strenght} Siła");
+            Console.WriteLine($"   {this.Agility} Zręczność");
+            Console.WriteLine($"   {this.Skill.OneHanded} Walka bronią jednoręczną");
+            Console.WriteLine($"   {this.Skill.TwoHanded} Walka bronią dwuręczną");
+            Console.WriteLine($"   {this.Skill.Bow} Łucznictwo");
+            Console.WriteLine($"   {this.Skill.Crossbow} Kuszownictwo");
         }
         public void Heal(ItemAndQuantity itemAndQuantity)
         {
@@ -175,16 +144,6 @@ namespace Game.Characters
             else
                 Console.WriteLine("Ten przedmiot nie regeneruje zdrowia!");
 
-        }
-
-        public void ShowSkill()
-        {
-            Console.WriteLine($"  {this.Strenght} Siła");
-            Console.WriteLine($"  {this.Agility} Zręczność");
-            Console.WriteLine($"  {this.Skill.OneHanded} Walka bronią jednoręczną");
-            Console.WriteLine($"  {this.Skill.TwoHanded} Walka bronią dwuręczną");
-            Console.WriteLine($"  {this.Skill.Bow} Łucznictwo");
-            Console.WriteLine($"  {this.Skill.Crossbow} Kuszownictwo");
         }
 
         public override string ToString()

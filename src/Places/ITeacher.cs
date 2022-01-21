@@ -6,6 +6,7 @@ namespace Game.Places
     {
         void ShowWhatITeach();
         int GetCostOfSkillImprovement(int skillLevel);
-        public void Teach(Knight student, string skill, int skillImprovementPoints);
+        int GetStudentAbilityPoints(Knight student, string ability);
+        public bool Teach(Knight student, string skill, int skillImprovementPoints, out string message);
     }
 }

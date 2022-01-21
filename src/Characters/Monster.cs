@@ -103,7 +103,7 @@ namespace Game.Characters
             }
         }
 
-        public void Attack(Creature enemy, string type = "malee")
+        public void Attack(Creature enemy, out string message, string type = "malee")
         {
             if (enemy.Life > 0)
             {
@@ -117,16 +117,15 @@ namespace Game.Characters
                 else
                     damage = (Strenght + Eq.Weapons.Get(Eq.EquippedWeaponIndex).Damage - enemyArmor - 10) / DamageSplitter;
 
-                //            damage = damage > 5 ? damage : 5;
+                //damage = damage > 5 ? damage : 5;
                 damage = damage > 1 ? damage : 1;
                 enemy.Life -= damage;
 
-                Console.WriteLine("{0} oberwał za {1} (armor {2})", enemy.Name, damage, enemyArmor);
-                //WinBattle(enemy);
+                message = "  " + enemy.Name + " oberwał za " + damage + " (armor " + enemyArmor + ")";
             }
             else
             {
-                Console.WriteLine("Gracz {0} jest już martwy!", enemy.Name);
+                message = "  " + enemy.Name + " jest już martwy!";
             }
         }
         public bool WinBattle(Creature enemy)
@@ -134,7 +133,6 @@ namespace Game.Characters
             if (enemy.Life <= 0)
             {
                 enemy.Life = 0;
-                Console.WriteLine($"   {enemy.Name} pokonany!");
                 return true;
             }
             return false;

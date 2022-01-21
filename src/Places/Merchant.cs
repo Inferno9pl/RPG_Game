@@ -35,7 +35,7 @@ namespace Game.Places
             ClientProductList = new();
         }
 
-        public void BuyFromShop(Creature client, string name, int count = -1)
+        public string BuyFromShop(Creature client, string name, int count = -1)
         {
             if (Int32.TryParse(name, out int index))
             {
@@ -54,6 +54,7 @@ namespace Game.Places
                     client.Eq.Armors.Add(armor);
                     var equippedArmorIndex = Eq.EquippedArmorIndex;
                     Eq.Armors.Remove(armor, ref equippedArmorIndex);
+                    return name;
                 }
             }
             else if (Eq.Weapons.Find(name, out Weapon weapon))
@@ -66,6 +67,7 @@ namespace Game.Places
                     client.Eq.Weapons.Add(weapon);
                     var equippedWeaponIndex = Eq.EquippedWeaponIndex;
                     Eq.Weapons.Remove(weapon, ref equippedWeaponIndex);
+                    return name;
                 }
             }
             else if (Eq.Items.Find(name, out ItemAndQuantity itemAndQuantity))
@@ -83,14 +85,16 @@ namespace Game.Places
                     client.Eq.Gold -= cost;
                     client.Eq.Items.Add(item, quantity);
                     Eq.Items.Remove(item, quantity);
+                    return name;
                 }
             }
             else
             {
                 Console.WriteLine($"Nie znaleziono {name}");
             }
+            return "";
         }
-        public void SellToShop(Creature client, string name, int count = -1)
+        public string SellToShop(Creature client, string name, int count = -1)
         {
             if (Int32.TryParse(name, out int index))
             {
@@ -104,6 +108,7 @@ namespace Game.Places
                 client.Eq.EquippedArmorIndex = equippedArmorIndex;
                 Eq.Armors.Add(armor);
                 client.Eq.Gold += SellValue(armor.Value);
+                return name;
             }
             else if (client.Eq.Weapons.Find(name, out Weapon weapon))
             {
@@ -112,6 +117,7 @@ namespace Game.Places
                 client.Eq.EquippedWeaponIndex = equippedWeaponIndex;
                 Eq.Weapons.Add(weapon);
                 client.Eq.Gold += SellValue(weapon.Value);
+                return name;
             }
             else if (client.Eq.Items.Find(name, out ItemAndQuantity itemAndQuantity))
             {
@@ -124,25 +130,27 @@ namespace Game.Places
                 client.Eq.Items.Remove(item, quantity);
                 Eq.Items.Add(item, quantity);
                 client.Eq.Gold += SellValue(item.Value, quantity);
+                return name;
             }
             else
             {
                 Console.WriteLine($"Nie znaleziono {name}");
             }
+            return "";
         }
         public void ShowAssortment()
         {
             ShopProductList.Clear();
             var index = 1;
             Console.WriteLine();
-            Console.WriteLine("## Asortyment sklepikarza ##");
+            Console.WriteLine(" ## Asortyment sklepikarza ##");
             if (Eq.Armors.Count() > 0)
             {
-                Console.WriteLine("  Zbroje:");
+                Console.WriteLine("   Zbroje:");
                 for (int i = 0; i < Eq.Armors.Count(); i++)
                 {
                     var armor = Eq.Armors.Get(i);
-                    Console.WriteLine("    " + index.ToString().PadLeft(2) + "." + BuyValue(armor.Value).ToString().PadLeft(6) + " gold | "
+                    Console.WriteLine("     " + index.ToString().PadLeft(2) + "." + BuyValue(armor.Value).ToString().PadLeft(6) + " gold | "
                         + armor.Name.PadRight(31) + " | "
                         + armor.MeleeProtection.ToString().PadLeft(3) + " | "
                         + armor.ArrowProtection.ToString().PadLeft(3) + " | ");
@@ -152,11 +160,11 @@ namespace Game.Places
             }
             if (Eq.Weapons.Count() > 0)
             {
-                Console.WriteLine("  Bronie:");
+                Console.WriteLine("   Bronie:");
                 for (int i = 0; i < Eq.Weapons.Count(); i++)
                 {
                     var weapon = Eq.Weapons.Get(i);
-                    Console.WriteLine("    " + index.ToString().PadLeft(2) + "." + BuyValue(weapon.Value).ToString().PadLeft(6) + " gold | "
+                    Console.WriteLine("     " + index.ToString().PadLeft(2) + "." + BuyValue(weapon.Value).ToString().PadLeft(6) + " gold | "
                         + weapon.Name.PadRight(31) + " | "
                         + weapon.Type + " | "
                         + weapon.Damage.ToString().PadLeft(3) + " dmg | "
@@ -169,24 +177,25 @@ namespace Game.Places
 
             if (Eq.Items.Count() > 0)
             {
-                Console.WriteLine("  Przedmioty:");
+                Console.WriteLine("   Przedmioty:");
                 for (int i = 0; i < Eq.Items.Count(); i++)
                 {
                     var quantity = Eq.Items.Get(i).Quantity;
                     var item = Eq.Items.Get(i).Item;
 
-                    if(item.Number != -1)
+                    if (item.Number != -1)
                     {
-                        Console.WriteLine("    " + index.ToString().PadLeft(2) + "." + BuyValue(item.Value).ToString().PadLeft(6) + " gold | "
+                        Console.WriteLine("     " + index.ToString().PadLeft(2) + "." + BuyValue(item.Value).ToString().PadLeft(6) + " gold | "
                         + item.Name.PadRight(23) + " (" + item.Number + "hp)".PadRight(6 - item.Number.ToString().Length) + " | "
                         + "x".PadLeft(4 - quantity.ToString().Length) + quantity + " | ");
-                    } else
+                    }
+                    else
                     {
-                        Console.WriteLine("    " + index.ToString().PadLeft(2) + "." + BuyValue(item.Value).ToString().PadLeft(6) + " gold | "
+                        Console.WriteLine("     " + index.ToString().PadLeft(2) + "." + BuyValue(item.Value).ToString().PadLeft(6) + " gold | "
                         + item.Name.PadRight(31) + " | "
                         + "x".PadLeft(4 - quantity.ToString().Length) + quantity + " | ");
                     }
-                    
+
                     ShopProductList.Add(index++, item.Name);
                 }
             }
@@ -196,14 +205,14 @@ namespace Game.Places
             ClientProductList.Clear();
             var index = 1;
             Console.WriteLine();
-            Console.WriteLine($"## Ekwipunek {client.Name} ({client.Eq.Gold} złota) ##");
+            Console.WriteLine($" ## Ekwipunek {client.Name} ({client.Eq.Gold} złota) ##");
             if (client.Eq.Armors.Count() > 0)
             {
-                Console.WriteLine("  Zbroje:");
+                Console.WriteLine("   Zbroje:");
                 for (int i = 0; i < client.Eq.Armors.Count(); i++)
                 {
                     var armor = client.Eq.Armors.Get(i);
-                    Console.WriteLine("    " + index.ToString().PadLeft(2) + "." + SellValue(armor.Value).ToString().PadLeft(6) + " gold | "
+                    Console.WriteLine("     " + index.ToString().PadLeft(2) + "." + SellValue(armor.Value).ToString().PadLeft(6) + " gold | "
                         + armor.Name.PadRight(31) + " | "
                         + armor.MeleeProtection.ToString().PadLeft(3) + " | "
                         + armor.ArrowProtection.ToString().PadLeft(3) + " | ");
@@ -213,11 +222,11 @@ namespace Game.Places
             }
             if (client.Eq.Weapons.Count() > 0)
             {
-                Console.WriteLine("  Bronie:");
+                Console.WriteLine("   Bronie:");
                 for (int i = 0; i < client.Eq.Weapons.Count(); i++)
                 {
                     var weapon = client.Eq.Weapons.Get(i);
-                    Console.WriteLine("    " + index.ToString().PadLeft(2) + "." + SellValue(weapon.Value).ToString().PadLeft(6) + " gold | "
+                    Console.WriteLine("     " + index.ToString().PadLeft(2) + "." + SellValue(weapon.Value).ToString().PadLeft(6) + " gold | "
                         + weapon.Name.PadRight(31) + " | "
                         + weapon.Type + " | "
                         + weapon.Damage.ToString().PadLeft(3) + " dmg | "
@@ -230,18 +239,31 @@ namespace Game.Places
 
             if (client.Eq.Items.Count() > 0)
             {
-                Console.WriteLine("  Przedmioty:");
+                Console.WriteLine("   Przedmioty:");
                 for (int i = 0; i < client.Eq.Items.Count(); i++)
                 {
                     var quantity = client.Eq.Items.Get(i).Quantity;
                     var item = client.Eq.Items.Get(i).Item;
-                    Console.WriteLine("    " + index.ToString().PadLeft(2) + "." + SellValue(item.Value).ToString().PadLeft(6) + " gold | "
+                    Console.WriteLine("     " + index.ToString().PadLeft(2) + "." + SellValue(item.Value).ToString().PadLeft(6) + " gold | "
                         + item.Name.PadRight(31) + " | "
                         + "x".PadLeft(3 - quantity.ToString().Length) + quantity + " | ");
 
                     ClientProductList.Add(index++, item.Name);
                 }
             }
+        }
+        public bool AskForQuantity(string name)
+        {
+            if (Int32.TryParse(name, out int index))
+            {
+                var temp = ShopProductList.GetValueOrDefault(index);
+                if (temp != null)
+                    name = temp;
+            }
+
+            if (Eq.Weapons.Find(name, out _) || Eq.Armors.Find(name, out var _))
+                return false;
+            return true;
         }
 
         private static Equipment GenerateAssortment(int newArmors, int newWeapons, int newItems, Creature client, IGetSpecificListFromDatabase database)
