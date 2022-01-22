@@ -1,0 +1,23 @@
+Krótki łuk; B; 15; 10; 100
+Kusza; C; 45; 35; 200
+Łuk; B; 30; 25; 200
+Kusza myśliwska; C; 30; 20; 500
+Łuk wierzbowy; B; 25; 20; 150
+Łuk myśliwski; B; 35; 30; 400
+Łuk z wiązu; B; 50; 50; 500
+Ognisty łuk; B; 50; 25; 2000
+Lekka kusza; C; 60; 40; 900
+Łuk kompozytowy; B; 65; 60; 700
+Łuk jesionowy; B; 80; 80; 800
+Długi łuk; B; 95; 90; 1000
+Średnia kusza; C; 90; 60; 1200
+Magiczny łuk; B; 100; 50; 2000
+Łuk bukowy; B; 110; 110; 1100
+Kościany łuk; B; 125; 120; 1300
+Łuk dębowy; B; 140; 140; 1400
+Kusza bojowa; C; 120; 90; 1500
+Łuk wojenny; B; 150; 150; 1500
+Smoczy łuk; B; 160; 160; 1600
+Ciężka kusza; C; 150; 120; 2000
+Kusza łowcy smoków; C; 180; 150; 2500
+Magiczna kusza; C; 200; 75; 2000

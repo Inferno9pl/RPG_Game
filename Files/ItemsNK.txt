@@ -1,0 +1,110 @@
+akwamaryn; 100; surowiec
+bryłka rudy; 1; surowiec
+czarna perła; 1000; surowiec
+kwarcyt; 20; surowiec
+pusty kamień runiczny; 100; surowiec
+siarka; 20; surowiec
+skała krystaliczna; 30; surowiec
+smoła; 10; surowiec
+woda święcona; 20; surowiec
+węgiel; 15; surowiec
+łój kretoszczura; 10; surowiec
+ciężki złoty talerz; 1300; kosztowności
+krwawy puchar; 200; kosztowności
+posążek innosa; 700; kosztowności
+pęknięta srebrna misa; 125; kosztowności
+sekstans; 2000; kosztowności
+skrzyneczka; 750; kosztowności
+srebrne naczynie; 1600; kosztowności
+srebrny puchar; 100; kosztowności
+srebrny talerz; 100; kosztowności
+srebrna świecznik; 50; kosztowności
+srebro coragona; 100; kosztowności
+szkatuła z klejnotami; 1000; kosztowności
+złote naczynie; 500; kosztowności
+złoty naszyjnik; 250; kosztowności
+złoty pierścień; 250; kosztowności
+złoty puchar; 350; kosztowności
+złoty talerz; 200; kosztowności
+złoty świecznik; 120; kosztowności
+gorąca stal; 10; żelazo
+ostrze; 20; żelazo
+rozgrzane ostrze; 10; żelazo
+surowa stal; 10; żelazo
+grabie; 10; narzędzie
+lutnia; 10; narzędzie
+menzurka; 35; narzędzie
+miotła; 30; narzędzie
+młotek; 10; narzędzie
+patelnia; 20; narzędzie
+piła; 20; narzędzie
+rozdrabniacz; 3; narzędzie
+łyżka; 10; narzędzie
+żuwaczka; 100; narzędzie
+grzybowy tytoń; 10; tytoń
+miodowy tytoń; 10; tytoń
+podwójne jabłko; 10; tytoń
+tytoń jabłkowy; 10; tytoń
+tytoń ziołowy; 10; tytoń
+język ognistego jaszczura; 300; trofeum
+kieł trolla; 300; trofeum
+kieł; 15; trofeum
+kieł błotnego węża; 300; trofeum
+pazury; 15; trofeum
+szpony topielca; 15; trofeum
+płytka pancerza pełzacza; 50; trofeum
+róg cieniostwora; 300; trofeum
+róg smoczego zębacza; 100; trofeum
+serce demona; 300; trofeum
+serce kamiennego golema; 300; trofeum
+serce bagiennego golema; 300; trofeum
+serce lodowego golema; 300; trofeum
+serce ognistego golema; 300; trofeum
+skrzydło krwiopijcy; 2; trofeum
+głowa polnego pełzacza; 100; trofeum
+smocza krew; 200; trofeum
+smocze łuski; 200; trofeum
+żuwaczki pełzacza; 15; trofeum
+żuwaczki polnej bestii; 15; trofeum
+żądło krwiopijcy; 25; trofeum
+serce smoka; 600; trofeum
+kość goblina; 10; kość
+kość szkieletu; 10; kość
+lekka ryba; 25; ryba
+mała ryba; 25; ryba
+ciężka ryba; 25; ryba
+owcza skóra; 10; skóra
+skóra dzika; 15; skóra
+skóra błotnego węża; 200; skóra
+skóra cieniostwora; 250; skóra
+skóra topielca; 25; skóra
+skóra trolla; 300; skóra
+skóra warga; 25; skóra
+skóra wilka; 10; skóra
+sakwa pełna złota; 250; mieszek 300
+skórzana sakwa gorna; 250; mieszek 250
+skórzana torba diega; 250; mieszek 2000
+skórzany mieszek; 250; mieszek 100
+worek pełen złota; 250; mieszek 1000
+łodyga bagiennego ziela; 30; używka
+strzała; 1; amunicja
+bełt; 1; amunicja
+pochodnia; 2; pochodnia
+wytrych; 10; wytrych
+surowe mięso; 3; pożywienie 6
+smażone mięso; 6; pożywienie 12
+mięso chrząszcza; 10; pożywienie 10
+barania kiełbasa; 9; pożywienie 12
+chleb; 20; pożywienie 20
+gulasz; 8; pożywienie 20
+jabłko; 8; pożywienie 3
+kiełbasa; 30; pożywienie 12
+miód; 30; pożywienie 12
+ryba; 15; pożywienie 5
+ser; 30; pożywienie 15
+szynka; 50; pożywienie 20
+zupa rybna; 20; pożywienie 10
+śledź; 15; pożywienie 20
+esencja lecznicza; 26; mikstura 50
+ekstrakt leczniczy; 35; mikstura 70
+eliksir leczniczy; 50; mikstura 100

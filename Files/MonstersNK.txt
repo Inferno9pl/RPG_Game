@@ -1,0 +1,69 @@
+Aligator; 12; 40; 40; 80; 20; 20; 0; 0
+Bagienny golem; 25; 125; 125; 250; 125; 250; 125; 125; serce bagiennego golema
+Bagienny szczur; 12; 60; 60; 120; 60; 10; 60; 0; surowe mięso, surowe mięso
+Bagienny truteń; 10; 50; 50; 100; 50; 0; 50; 0
+Brzytwiak; 22; 90; 90; 180; 90; 90; 90; 0; pazury, pazury, kieł, kieł
+Chrząszcz; 1; 0; 0; 10; 0; 0; 0; 0; mięso chrząszcza
+Cieniostwór; 30; 150; 150; 300; 125; 75; 125; 30; róg cieniostwora, skóra cieniostwora, kieł, kieł, pazury, pazury, pazury, pazury, surowe mięso, surowe mięso
+Szkielet cieniostwora; 40; 200; 200; 400; 150; 200; 150; 20
+Demon; 50; 250; 250; 500; 175; 175; 175; 175; serce demona
+Ognisty demon; 30; 150; 150; 300; 150; 200; 150; 75
+Książe demonów; 60; 300; 300; 600; 100; 100; 50; 50; serce demona
+Dzik; 10; 50; 50; 100; 50; 0; 50; 0; skóra dzika, surowe mięso
+Harpia; 18; 90; 90; 180; 90; 40; 90; 30
+Jaszczur; 12; 60; 60; 120; 100; 100; 100; 0; pazury, pazury
+Ognisty jaszczur; 30; 150; 150; 300; 150; 150; 150; 0; język ognistego jaszczura, pazury, pazury, pazury, pazury
+Kamienny golem; 25; 125; 125; 250; 100; 150; 100; 100; serce kamiennego golema
+Kamienny strażnik; 18; 90; 90; 180; 90; 140; 90; 90
+Kąsacz; 12; 60; 60; 120; 60; 60; 60; 0; surowe mięso, pazury, pazury, kieł, kieł
+Kretoszczur; 7; 25; 25; 50; 25; 25; 25; 0; surowe mięso
+Krwiopijca; 6; 20; 20; 40; 20; 20; 20; 0; skrzydło krwiopijcy, skrzydło krwiopijcy, żądło krwiopijcy
+Mały krwiopijca; 3; 5; 5; 20; 0; 0; 0; 0; skrzydło krwiopijcy, skrzydło krwiopijcy, żądło krwiopijcy
+Lodowy golem; 45; 225; 225; 450; 160; 210; 160; 160; serce lodowego golema
+Ognik; 6; 20; 20; 40; 0; 0; 0; 0
+Ognisty golem; 40; 200; 200; 400; 150; 200; 150; 150; serce ognistego golema
+Latający rój; 6; 30; 30; 60; 0; 0; 0; 0
+Olbrzymi szczur; 5; 15; 15; 30; 15; 0; 15; 0; surowe mięso
+Młody olbrzymi szczur; 3; 5; 5; 10; 5; 5; 5; 0; surowe mięso
+Owca; 1; 5; 5; 10; 0; 0; 0; 0; surowe mięso, owcza skóra
+Ogar; 22; 90; 90; 180; 90; 40; 90; 0; pazury, pazury, pazury, pazury, kieł, kieł
+Pantera; 20; 100; 100; 200; 0; 0; 0; 0
+Pełzacz; 12; 60; 60; 120; 60; 60; 60; 0; żuwaczki pełzacza, płytka pancerza pełzacza
+Pełzacz wojownik; 18; 90; 90; 180; 90; 90; 90; 90; żuwaczki pełzacza, płytka pancerza pełzacza, płytka pancerza pełzacza
+Polny pełzacz; 15; 75; 75; 150; 75; 75; 75; 0; głowa polnego pełzacza, płytka pancerza pełzacza, żuwaczki pełzacza
+Polna bestia; 8; 40; 40; 80; 40; 40; 40; 0; żuwaczki polnej bestii
+Pustynny szczur; 12; 75; 75; 75; 75; 25; 75; 0; surowe mięso
+Młoda polna bestia; 2; 10; 10; 20; 10; 10; 10; 0; żuwaczki polnej bestii
+Ścierwojad; 7; 35; 35; 70; 35; 0; 35; 0; surowe mięso
+Preriowy ścierwojad; 12; 60; 60; 120; 60; 10; 60; 0; surowe mięso
+Topielec; 12; 60; 60; 120; 60; 60; 20; 0; skóra topielca, szpony topielca
+Troll; 50; 100; 100; 500; 125; -1; 125; 250; skóra trolla, kieł trolla, kieł trolla
+Czarny troll; 100; 200; 200; 1000; 150; -1; 150; 300; skóra czarnego trolla, kieł trolla
+Warg; 30; 150; 150; 300; 125; 75; 125; 0; surowe mięso, kieł, kieł, skóra warga
+Wąż błotny; 24; 120; 120; 240; 100; 100; 100; 0; skóra błotnego węża, kieł błotnego węża
+Wilk; 6; 30; 30; 60; 30; 0; 30; 0; skóra wilka, kieł, kieł
+Młody wilk; 3; 10; 10; 20; 10; 0; 10; 0; surowe mięso, skóra wilka, kieł, kieł
+Lodowy wilk; 30; 150; 150; 300; 150; 100; 150; 0; skóra wilka, surowe mięso, kieł, kieł
+Zębacz; 12; 60; 60; 160; 60; 60; 60; 0; pazury, pazury, kieł, kieł
+Smoczy zębacz; 40; 200; 200; 400; 150; 150; 150; 0; pazury, pazury, pazury, pazury, kieł, kieł, róg smoczego zębacza, róg smoczego zębacza
+Zombie; 20; 100; 100; 400; 50; 50; 50; 0
+Sługa Kruka; 20; 100; 100; 400; 120; 120; 50; 0
+Smok bagienny; 300; 120; 100; 1000; 150; 150; 150; 150; smocza krew, smocze łuski, serce smoka
+Smok lodowy; 600; 150; 100; 1000; 180; 180; 180; 180; smocza krew, smocze łuski, serce smoka
+Smok ognisty; 500; 140; 100; 1000; 170; 170; 170; 170; smocza krew, smocze łuski, serce smoka
+Smok kamienny; 400; 130; 100; 1000; 160; 160; 160; 160; smocza krew, smocze łuski, serce smoka
+Smok ożywieniec; 1000; 170; 170; 2000; 200; 200; 200; 200; serce smoka
+Goblin; 3; 10; 5; 20; 0; 0; 0; 0; Laga, złoto
+Gobliński wojownik; 15; 75; 75; 75; 75; 75; 75; 0; Zardzewiały krótki miecz, złoto
+Czarny goblin; 15; 75; 75; 75; 75; 75; 75; 0; Laga, złoto
+Jaszczuroczłek; 35; 130; 130; 250; 130; 130; 130; 65; Jaszczurzy miecz
+Ork wojownik; 30; 100; 150; 300; 150; 150; 150; 20; Lekki orkowy topór, złoto
+Ork elita; 45; 125; 225; 450; 160; 160; 160; 100; Orkowy miecz wojenny, skóra warga, złoto
+Ork szaman; 35; 100; 100; 30; 130; 130; 130; 65; Lekki orkowy topór, złoto
+Ork ożywieniec; 40; 100; 200; 400; 150; 150; 150; 0; Średni orkowy topór
+Pan cienia; 50; 105; 100; 400; 200; 200; 150; 50; Miecz dwuręczny, złoto, kość szkieletu
+Poszukiwacz; 30; 125; 125; 400; 130; 130; 65; 65; złoto
+Szkielet goblin; 15; 75; 75; 75; 75; 150; 75; 20; Laga, kość goblina
+Szkielet wojownik; 30; 100; 150; 150; 125; 175; 125; 0; Zardzewiały miecz dwuręczny, kość szkieletu
+Pomniejszy szkielet; 15; 45; 75; 150; 80; 130; 80; 0; Zardzewiały krótki miecz, kość szkieletu
+Szkielet mag; 30; 150; 150; 300; 125; 175; 125; 50

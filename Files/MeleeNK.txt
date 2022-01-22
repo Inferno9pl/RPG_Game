@@ -1,0 +1,116 @@
+Sztylet; J; 5; 5; 5
+Pogrzebacz; J; 5; 5; 5
+Sierp; J; 7; 5; 10
+Laska; J; 8; 5; 10
+Pałka; J; 8; 5; 10
+Laga; J; 10; 10; 5
+Sługa wiatru; J; 15; 25; 25
+Kiepski krótki miecz; J; 20; 10; 250
+Krótki miecz straży; J; 20; 10; 250
+Młot kowalski; J; 20; 10; 200
+Topór; J; 20; 10; 200
+Topór drwala; D; 50; 50; 500
+Zardzewiały krótki miecz; J; 30; 30; 30
+Nóż na wilki; J; 30; 30; 50
+Mała kosa; J; 25; 10; 250
+Maczuga z kolcami; J; 25; 10; 50
+Miecz; J; 40; 30; 450
+Gruby krótki miecz; J; 40; 20; 500
+Pałka z kolcami; J; 40; 30; 450
+Kilof; D; 30; 10; 300
+Wilczy kieł; J; 45; 22; 550
+Pika bojowa; D; 30; 15; 500
+Pałka bojowa; J; 50; 50; 500
+Dobry krótki miecz; J; 50; 25; 750
+Kostur sędziego; J; 50; 35; 600
+Kiepski miecz; J; 40; 50; 40
+Kiepski tasak; J; 40; 40; 40
+Kiepski szeroki miecz; J; 60; 50; 750
+Miecz Alrika; J; 30; 30; 50
+Zardzewiały topór; D; 40; 40; 40
+Zardzewiały miecz dwuręczny; D; 50; 50; 50
+Ciężka pałka z kolcami; J; 70; 70; 700
+Halabarda; D; 55; 55; 550
+Magiczna różdżka; D; 55; 25; 850
+Młot wojenny; J; 55; 55; 550
+Kiepski długi miecz; J; 65; 65; 650
+Topór marynarski; J; 60; 60; 600
+Piracki kordelas; J; 65; 60; 700
+Lekki orkowy topór; D; 50; 70; 10
+Topór pokładowy; J; 60; 60; 600
+Stara maczeta; J; 60; 60; 600
+Laska wodnego kręgu; D; 60; 30; 900
+Kostur maga ognia; D; 60; 30; 900
+Miecz paladyna; J; 60; 60; 600
+Kostur maga wody; D; 65; 35; 950
+Samodzielnie wykuty miecz; J; 30; 20; 100
+Miażdżydeska; D; 70; 70; 700
+Wielka stara maczeta; D; 70; 70; 700
+Zaklęty kostur Ulthara; D; 70; 40; 1000
+Lekki miecz dwuręczny; D; 75; 75; 750
+Buława drzewcowa; D; 70; 70; 700
+Lekki topór bojowy; D; 80; 80; 800
+Oskard; J; 100; 100; 1000
+Rębiczerep; J; 35; 30; 300
+Dobry miecz; J; 35; 30; 450
+Kiepski miecz dwuręczny; D; 60; 70; 60
+Kiepski topór bojowy; D; 60; 70; 60
+Średni orkowy topór; D; 60; 60; 15
+Miecz dwuręczny Roda; D; 40; 30; 50
+Topór obosieczny; J; 90; 90; 900
+Święty młot; D; 60; 10; 1000
+Wielki topór; D; 90; 90; 900
+Miecz dwuręczny paladyna; D; 80; 80; 800
+Jaszczurzy miecz; D; 80; 100; 25
+Ciężki orkowy topór; D; 70; 90; 20
+Tajfun; D; 75; 45; 1050
+Dobry długi miecz; J; 80; 70; 900
+Kiepski miecz półtoraręczny; J; 90; 95; 850
+Buława i łańcuch; J; 90; 90; 900
+Dobry miecz półtoraręczny; J; 110; 110; 1100
+Ogromny orkowy topór; D; 80; 100; 25
+Długi miecz magiczny; J; 66; 40; 750
+Buława; J; 50; 45; 600
+Rubinowe ostrze; J; 100; 90; 1200
+Magiczny miecz dwuręczny; D; 80; 60; 800
+Długi miecz; J; 85; 85; 850
+Maczeta; J; 100; 90; 1100
+Wielka maczeta; D; 105; 100; 1100
+Miecz dwuręczny; D; 105; 105; 1050
+Miecz runiczny; J; 110; 110; 1100
+Kruczy dziób; J; 110; 110; 1100
+Runa mocy; D; 115; 115; 1150
+Topór bojowy; D; 60; 60; 1200
+Orkowy miecz wojenny; D; 100; 120; 130
+Inkwizytor; J; 110; 110; 1100
+Magiczny miecz półtoraręczny; J; 80; 100; 1200
+Kiepskie ostrze magiczne; J; 100; 100; 2000
+Miecz Ferosa; J; 100; 90; 1200
+Sługa burzy; D; 105; 100; 1100
+Orkowa zguba; J; 130; 130; 1300
+Ciężki młot wojenny; J; 120; 120; 1200
+Katowski topór; J; 125; 125; 1250
+El Bastardo; J; 120; 110; 1300
+Topór wojenny; D; 140; 140; 1400
+Ciężki miecz dwuręczny; D; 135; 135; 1350
+Kordelas; D; 145; 145; 1450
+Ciężki magiczny miecz dwuręczny; D; 120; 100; 1500
+Kiepskie dwuręczne ostrze magiczne; D; 120; 120; 2000
+Błogosławione ostrze magiczne; J; 120; 100; 3000
+Ostrze burzy; D; 150; 150; 1500
+Barbarzyński topór bojowy; D; 150; 150; 1500
+Magiczne ostrze bojowe; D; 140; 120; 1500
+Topór berserkera; D; 200; 170; 3000
+Smocza zguba; D; 190; 160; 2900
+Gniew Innosa; J; 140; 100; 4000
+Miecz zakonu; D; 160; 120; 4000
+Ciężkie magiczne ostrze bojowe; D; 160; 140; 1800
+Magiczne ostrze na smoki; J; 160; 140; 1800
+Święty kat; D; 160; 120; 4000
+Duże magiczne ostrze na smoki; D; 180; 160; 2100
+Szpada; Jz; 18; 10; 100
+Pałasz bandytów; Jz; 40; 20; 250
+Pałasz; Jz; 40; 20; 500
+Rapier; Jz; 100; 50; 2000
+Miecz mistrzowski; Jz; 120; 60; 1200
+Betty; Dz; 120; 110; 1300

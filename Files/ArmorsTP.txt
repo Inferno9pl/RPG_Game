@@ -1,0 +1,42 @@
+Pancerz paladyna; 150; 150; 100; 50; 20000
+Ciężki pancerz łowcy smoków; 150; 150; 100; 50; 20000
+Mroczny płaszcz; 130; 130; 65; 65; 18000
+Średni pancerz łowcy smoków; 120; 120; 75; 75; 12000
+Zbroja Kruka; 100; 100; 100; 100; 10000
+Szata Mrocznej Magii; 100; 100; 50; 50; 10000
+Magiczna zbroja; 100; 100; 50; 50; 10000
+Pancerz rycerza; 100; 100; 50; 25; 10000
+Ciężka szata ognia; 100; 100; 50; 50; 10000
+Lekki pancerz łowcy smoków; 100; 100; 50; 25; 10000
+Pancerz Cor Angara; 100; 100; 50; 25; 10000
+Szata maga wody; 100; 100; 50; 50; 10000
+Ciężki pancerz najemnika; 80; 80; 5; 10; 8000
+Ciężki pancerz straży; 70; 70; 10; 10; 7000
+Zbroja z pancerzy pełzaczy; 70; 70; 15; 0; 7000
+Zbroja Bloodwyna; 70; 70; 0; 0; 7000
+Zbroja magnata; 70; 70; 0; 0; 7000
+Zbroja strażnika Kruka; 70; 70; 0; 0; 7000
+Ubranie kapitana; 60; 60; 0; 0; 6000
+Piracka zbroja; 55; 55; 0; 0; 5500
+Stara zbroja; 50; 50; 50; 50; 5000
+Ciężki pancerz bandyty; 50; 50; 0; 0; 5000
+Lekka toga Maga Wody; 50; 50; 25; 25; 5000
+Zbroja Wodnego Kręgu; 50; 50; 0; 10; 5000
+Średni pancerz najemnika; 50; 50; 0; 5; 5000
+Szata maga ognia; 40; 40; 20; 20; 4000
+Pirackie ubranie; 40; 40; 0; 0; 4000
+Kaftan gubernatora; 40; 40; 0; 0; 4000
+Lekki pancerz straży; 40; 40; 0; 0; 4000
+Średni pancerz bandyty; 35; 35; 0; 0; 3500
+Lekki pancerz najemnika; 30; 30; 0; 0; 3000
+Pancerz Diega; 30; 30; 0; 0; 3000
+Szata Lestera; 25; 25; 0; 0; 2500
+Szata nowicjusza; 25; 25; 0; 10; 2500
+Skórzany pancerz; 25; 20; 5; 0; 2500
+Łachy skazańca; 20; 20; 0; 0; 2000
+Strój farmera; 15; 15; 0; 0; 1500
+Strój obywatela; 10; 10; 0; 0; 1000
+Strój ziemianina; 10; 10; 0; 0; 1000
+Szata sędziego; 10; 10; 0; 0; 1000
+Strój kowala; 10; 10; 0; 0; 1000
+Znoszony strój; 2; 2; 0; 0; 100

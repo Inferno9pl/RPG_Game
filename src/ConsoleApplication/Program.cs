@@ -1,5 +1,7 @@
 ﻿using Game.ConsoleApplication;
 using Game.Databases;
+using System;
+using System.IO;
 
 namespace Game.Main
 {
@@ -7,7 +9,10 @@ namespace Game.Main
     {
         static void Main()
         {
-            var db = new DatabaseTxtFile(@"C:\Users\Infer\OneDrive\Pulpit\Projekt");
+            string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string filesPath = Path.GetFullPath(Path.Combine(currentDirectory, @"..\..\..\Files"));
+
+            var db = new DatabaseTxtFile(filesPath);
             _ = new ConsoleGame<DatabaseTxtFile>(db);     
         }
 
