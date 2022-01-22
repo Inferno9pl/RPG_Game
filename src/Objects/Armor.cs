@@ -5,6 +5,7 @@ namespace Game.Objects
 {
     public sealed class Armor : Collectable
     {
+        internal Armor() { }
         public Armor(string name, int meleeProtection, int arrowProtection, int fireProtection, int magicProtection, int value)
         {
             Name = name;

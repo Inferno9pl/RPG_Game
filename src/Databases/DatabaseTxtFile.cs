@@ -1,23 +1,31 @@
-﻿using Game.Objects;
+﻿using Game.Characters;
+using Game.Objects;
 using System;
 using System.Collections.Generic;
 using System.IO;
 
 namespace Game.Databases
 {
-    public class DatabaseTxtFile : IGetObjectDataFromDatabase, IGetSpecificListFromDatabase
+    public class DatabaseTxtFile : IGetObjectDataFromDatabase, IGetSpecificListFromDatabase, ILoadAndSaveToDatabase
     {
-        private const string Path = @"C:\Users\Infer\OneDrive\Pulpit\Projekt";
-        private const int FilenameEndingLength = 6;
-
+        private string Path { init; get; }
+        private int FilenameExtension { set; get; }
         private Dictionary<string, string[]> AllWeapons { set; get; }
         private Dictionary<string, string[]> AllArmors { set; get; }
         private Dictionary<string, string[]> AllItems { set; get; }
         private Dictionary<string, string[]> AllMonsters { set; get; }
         private SortedDictionary<int, List<string>> MonstersLevels { set; get; }
 
-        public DatabaseTxtFile()
+        public DatabaseTxtFile(string path, int additionalFilenameOffset = 2)
         {
+            Path = path;
+
+            if (!Directory.Exists(path + @"\Saves\"))
+            {
+                Directory.CreateDirectory(path + @"\Saves\");
+            }
+
+            FilenameExtension = 4 + additionalFilenameOffset;
             AllWeapons = new();
             AllArmors = new();
             AllItems = new();
@@ -28,7 +36,6 @@ namespace Game.Databases
 
         private void Init()
         {
-            //LoadFile("ArmorsNK.txt");
             LoadFile("ArmorsTP.txt");
             LoadFile("MeleeNK.txt");
             LoadFile("RangedNK.txt");
@@ -43,7 +50,7 @@ namespace Game.Databases
                 using StreamReader sr = File.OpenText(fileLocation);
                 var s = "";
 
-                var assetType = file[0..^FilenameEndingLength];
+                var assetType = file[0..^FilenameExtension];
                 //var assetType = file.Substring(0, file.Length - fileNameEndingLength);
 
                 string[] splittedRow;
@@ -187,6 +194,68 @@ namespace Game.Databases
                     weapons.Add(weapon);
             }
             return weapons;
+        }
+
+        public void SavePlayer(Knight player)
+        {
+            string fileLocation = Path + @"\Saves\" + player.Name + @".sv";
+            FileStream file = File.Create(fileLocation);
+
+            System.Xml.Serialization.XmlSerializer writer = new(typeof(Knight));
+            writer.Serialize(file, player);
+
+            Console.WriteLine("Zapisano " + player.Name);
+            file.Close();
+        }
+        public bool LoadPlayer(string playerName, out Knight player)
+        {
+            if(SaveFileExist(playerName))
+            {
+                string fileLocation = Path + @"\Saves\" + playerName + @".sv";
+                StreamReader file = new(fileLocation);
+
+                System.Xml.Serialization.XmlSerializer reader = new(typeof(Knight));
+                player = (Knight)reader.Deserialize(file);
+
+                Console.WriteLine(" Wczytano " + player.Name);
+                file.Close();
+                return true;
+            } else
+            {
+                player = null;
+                Console.WriteLine($" Nie ma zapisu o nazwie {playerName} ");
+                return false;
+            }  
+        }
+        public List<string> GetSaveFiles()
+        {
+            List<string> playerName = new();
+            try
+            {
+                string[] dirs = Directory.GetFiles(Path + @"\Saves\", "*.sv");
+                foreach (string dir in dirs)
+                {
+                    var temp = dir.Split(@"\");
+                    playerName.Add(temp[^1][0..^3]); 
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("The process failed: {0}", e.ToString());
+            }
+            return playerName;
+        }
+
+        private bool SaveFileExist(string name)
+        {
+            var saveFiles = GetSaveFiles();
+            
+            foreach (string save in saveFiles)
+            {
+                if (save.Equals(name))
+                    return true;
+            }
+            return false;
         }
     }
 }

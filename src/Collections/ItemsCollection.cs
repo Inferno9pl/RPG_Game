@@ -6,7 +6,7 @@ namespace Game.Collections
 {
     public class ItemsCollection : IItemsCollection
     {
-        private List<ItemAndQuantity> Items { get; init; }
+        public List<ItemAndQuantity> Items { get; init; }
 
         public ItemsCollection()
         {

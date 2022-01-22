@@ -11,24 +11,31 @@ namespace Game.Characters
         public int MaxLife { get; set; }
         public int Level { get; set; }
 
-        public int Strenght { get; set; }
-        public int Agility { get; set; }
+        private int strenght;
+        private int agility;
+        public int Strenght { get => strenght; set => strenght = SetAtributeValue(value, 200); }
+        public int Agility { get => agility; set => agility = SetAtributeValue(value, 200); }
         public Equipment Eq { get; init; }
 
-        public void Equip(string element)
+        public void Equip(string element, out string message)
         {
             Eq.Armors.Find(element, out Armor armor);
             if (armor != null)
             {
                 Equip(armor);
+                message = "Wyposażono " + armor.Name;
             }
             else
             {
                 Eq.Weapons.Find(element, out Weapon weapon);
                 if (weapon != null)
+                {
                     Equip(weapon);
+                    message = "Wyposażono " + weapon.Name;
+                }
+
                 else
-                    Console.WriteLine($"Nie znaleziono {element}");
+                    message = "Nie znaleziono " + element;
             }
         }
         public void Equip(Armor armor)
@@ -83,6 +90,8 @@ namespace Game.Characters
 
         public int GetProtection(string type)
         {
+            if (Eq.EquippedArmorIndex == -1) return 0;
+
             int armor;
             armor = type switch
             {
@@ -116,6 +125,12 @@ namespace Game.Characters
                 Console.WriteLine(" >  " + item);
                 enemy.Eq.Items.Add(item.Item, item.Quantity);
             }
+        }
+
+        private static int SetAtributeValue(int value, int maxValue)
+        {
+            if (value < 0) return 0;
+            return value > maxValue ? maxValue : value;
         }
 
         override public string ToString()
