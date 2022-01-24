@@ -65,7 +65,7 @@ You can read who your opponent was and the damage you dealt
 
 ![image4](Screenshots/menu.png)
 
-Po wybraniu jednej z akcji wyświetli się jeden z poniższych widoków: 
+After selecting one of the actions, one of the following views will be displayed:
 
 ![image5](Screenshots/merchant.png)
 
